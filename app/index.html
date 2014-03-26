@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AngularJS Journal</title>
+    <script type="text/javascript" src="../libraries/angular/angular.js"></script>
+    <script type="text/javascript" src="journalApp.js"></script>
+    <script type="text/javascript" src="journalRepository.js"></script>
+    <script type="text/javascript" src="journalController.js"></script>
+</head>
+<body ng-app="journalApp">
+<h3>Journal</h3>
+<div ng-controller="JournalController">
+    <div>
+        <form id="new-entry-form" ng-submit="addEntry()">
+            <textarea id="new-entry" ng-model="newEntryText"></textarea>
+            <input type="submit" value="Save"/>
+        </form>
+    </div>
+    <div>
+        <h3>Past Entries ({{entries.length}})</h3>
+        <ul>
+            <li ng-repeat="entry in entries">
+                <span>{{entry.text}}</span>
+            </li>
+        </ul>
+        <hr/>
+    </div>
+</div>
+</body>
+</html>
