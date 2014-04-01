@@ -1,4 +1,3 @@
-// A reference configuration file.
 exports.config = {
     // ----- How to setup Selenium -----
     //
@@ -26,13 +25,13 @@ exports.config = {
     // find chromedriver. This will be passed to the selenium jar as
     // the system property webdriver.chrome.driver. If null, selenium will
     // attempt to find chromedriver using PATH.
-    chromeDriver: './selenium/chromedriver',
+    chromeDriver: "./selenium/chromedriver",
     // If true, only chromedriver will be started, not a standalone selenium.
     // Tests for browsers other than chrome will not run.
     chromeOnly: false,
     // Additional command line options to pass to selenium. For example,
     // if you need to change the browser timeout, use
-    // seleniumArgs: ['-browserTimeout=60'],
+    // seleniumArgs: ["-browserTimeout=60"],
     seleniumArgs: [],
 
     // If sauceUser and sauceKey are specified, seleniumServerJar will be ignored.
@@ -42,8 +41,8 @@ exports.config = {
 
     // The address of a running selenium server. If specified, Protractor will
     // connect to an already running instance of selenium. This usually looks like
-    // seleniumAddress: 'http://localhost:4444/wd/hub'
-    seleniumAddress: null,
+    // seleniumAddress: "http://localhost:4444/wd/hub"
+    seleniumAddress: "http://localhost:4444/wd/hub",
 
     // The timeout for each script run on the browser. This should be longer
     // than the maximum time your application needs to stabilize between tasks.
@@ -53,7 +52,7 @@ exports.config = {
     //
     // Spec patterns are relative to the location of this config.
     specs: [
-        'test/e2e/**/*.js'
+        "tests/e2e/**/*.js"
     ],
 
     // Patterns to exclude.
@@ -66,7 +65,10 @@ exports.config = {
     // and
     // https://code.google.com/p/selenium/source/browse/javascript/webdriver/capabilities.js
     capabilities: {
-        'browserName': 'chrome'
+        "browserName": "chrome"
+        //What the browser should do with an unhandled alert before throwing out the UnhandledAlertException.
+        //Possible values are "accept", "dismiss" and "ignore".
+        //"unexpectedAlertBehaviour":
     },
 
     // If you would like to run more than one instance of webdriver on the same
@@ -78,32 +80,32 @@ exports.config = {
     //
     // A base URL for your application under test. Calls to protractor.get()
     // with relative paths will be prepended with this.
-    baseUrl: 'http://localhost:8000',
+    baseUrl: "http://localhost:63342",
 
     // Selector for the element housing the angular app - this defaults to
     // body, but is necessary if ng-app is on a descendant of <body>
-    rootElement: 'body',
+    rootElement: "body",
 
     // A callback function called once protractor is ready and available, and
     // before the specs are executed
     // You can specify a file containing code to run by setting onPrepare to
     // the filename string.
     onPrepare: function() {
-        // At this point, global 'protractor' object will be set up, and jasmine
+        // At this point, global "protractor" object will be set up, and jasmine
         // will be available. For example, you can add a Jasmine reporter with:
         //     jasmine.getEnv().addReporter(new jasmine.JUnitXmlReporter(
-        //         'outputdir/', true, true));
+        //         "outputdir/", true, true));
     },
 
     // The params object will be passed directly to the protractor instance,
     // and can be accessed from your test. It is an arbitrary object and can
     // contain anything you may need in your test.
     // This can be changed via the command line as:
-    //   --params.login.user 'Joe'
+    //   --params.login.user "Joe"
     params: {
         login: {
-            user: 'Homer',
-            password: 'Donuts'
+            user: "Homer",
+            password: "Donuts"
         }
     },
 
@@ -112,7 +114,7 @@ exports.config = {
     // Jasmine and Cucumber are fully supported as a test and assertion framework.
     // Mocha has limited beta support. You will need to include your own
     // assertion framework if working with mocha.
-    framework: 'jasmine',
+    framework: "jasmine",
 
     // ----- Options to be passed to minijasminenode -----
     //

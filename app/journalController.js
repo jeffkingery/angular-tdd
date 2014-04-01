@@ -1,46 +1,53 @@
-/* global journalApp:true */
+/* global app:true */
 
-journalApp.controller('JournalController', function($scope, $location, JournalRepository){
-    $scope.location = $location;
-    var entries = $scope.entries = JournalRepository.retrieveAll();
-    $scope.newEntryText = '';
+app.controller("JournalController", function($scope, $location, JournalRepository){
 
-    if ($location.path() === ''){
-        $location.path('/');
+    $scope.entries = JournalRepository.retrieveAll();
+
+    if ($location.path() === ""){
+        $location.path("/");
     }
 
-    $scope.testEntries = [
-        {date: Date(), text: 'entry1'},
-        {date: Date(), text: 'entry2'},
-        {date: Date(), text: 'entry3'},
-        {date: Date(), text: 'entry4'}
-    ];
+    $scope.location = $location;
 
-    $scope.addEntry = function () {
-        var newEntryText = $scope.newEntryText.trim();
-
-        if (!newEntryText.length){
+    $scope.addEntry = function() {
+        if ($scope.newEntryText === ""){
             return;
         }
 
-        entries.push({
-            date: new Date(),
-            text: newEntryText
+        $scope.entries.push({
+            text: $scope.newEntryText,
+            date: Date()
         });
+        $scope.newEntryText = "";
+        JournalRepository.saveAll($scope.entries);
+    };
 
-        JournalRepository.saveAll(entries);
+    $scope.saveAll = function() {
+        var allEntries = $scope.entries;
+        $scope.entries = [];
+        angular.forEach(allEntries, function(entry){
+            if (!entry.remove)
+            {
+                $scope.entries.push(entry);
+            }
+        });
+        JournalRepository.saveAll($scope.entries);
+    };
 
-        $scope.newEntryText = '';
+    $scope.clear = function (){
+        $scope.entries = [];
+        JournalRepository.saveAll($scope.entries);
     };
 
     $scope.deleteEntry = function (entryToDelete){
-        entries.splice(entries.indexOf(entryToDelete));
-        JournalRepository.saveAll(entries);
+        entryToDelete.remove = true;
+        $scope.saveAll($scope.entries);
     };
 
-    $scope.$watch('entries', function(newValue, oldValue){
-       if (newValue !== oldValue){
-           JournalRepository.saveAll(entries);
-       }
-    });
+//    $scope.$watch("entries", function(newValue, oldValue){
+//        if (newValue !== oldValue){
+//            JournalRepository.saveAll(entries);
+//        }
+//    }, true);
 });

@@ -5,19 +5,19 @@
         var repository, entries, entry1, entry2, entry3;
 
         beforeEach(function(){
-            entry1 = { date: Date().toString(), text: 'Whatever' };
-            entry2 = { date: Date().toString(), text: 'Whichever' };
-            entry3 = { date: Date().toString(), text: 'Wherever' };
+            entry1 = { date: Date().toString(), text: "Whatever" };
+            entry2 = { date: Date().toString(), text: "Whichever" };
+            entry3 = { date: Date().toString(), text: "Wherever" };
             entries = [entry1, entry2, entry3];
         });
 
-        beforeEach(module('journalApp'));
+        beforeEach(module("app"));
 
         beforeEach(inject(function($injector){
-            repository = $injector.get('JournalRepository');
+            repository = $injector.get("JournalRepository");
         }));
 
-        it('Add adds an Entry', function(){
+        it("Add adds an Entry", function(){
             repository.saveAll([entries]);
 
             var result = repository.retrieveAll();
@@ -27,7 +27,7 @@
             expect(JSON.stringify(result)).toContain(JSON.stringify(entry3));
         });
 
-        it('Clear removes all Entries', function(){
+        it("Clear removes all Entries", function(){
             repository.clear();
 
             var result = repository.retrieveAll();
@@ -42,8 +42,8 @@
         });
 
         it("Retrieves Journal Entries", function () {
-            var entryText = 'Dear Diary, what a day it"s been!';
-            var journalEntry = {'text': entryText};
+            var entryText = "Dear Diary, what a day it's been!";
+            var journalEntry = {"text": entryText};
             repository.saveAll([journalEntry]);
 
             var result = repository.retrieveAll();

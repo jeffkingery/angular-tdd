@@ -22,7 +22,7 @@
         "requirejs": "2.1.11",
         "karma-requirejs": "0.2.1",
         "grunt-contrib-watch": "0.6.0",
-        "selenium-webdriver": "~2.40.0"
+        "selenium-webdriver": "2.40.0"
     },
     "main": "Gruntfile.js",
     "directories": {

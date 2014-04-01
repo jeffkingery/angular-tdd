@@ -1,21 +1,24 @@
-/*global journalApp */
+/*global app */
 
 // Service to persist and retrieve Journal Entries from localStorage
-journalApp.factory('JournalRepository', function () {
+app.factory("JournalRepository", function () {
 
-    var STORAGE_ID = 'journal-entries';
+    var STORAGE_ID = "journal-entries";
 
     return {
-        clear: function () {
-            localStorage.clear();
-        },
 
         retrieveAll: function () {
-            return JSON.parse(localStorage.getItem(STORAGE_ID) || '[]');
+            return JSON.parse(localStorage.getItem(STORAGE_ID) || "[]");
         },
 
         saveAll: function (entries) {
-            localStorage.setItem(STORAGE_ID, JSON.stringify(entries));
+            var blob = JSON.stringify(entries);
+            localStorage.setItem(STORAGE_ID, blob);
+        },
+
+        clear: function () {
+            localStorage.clear(STORAGE_ID);
+            this.saveAll([]);
         }
     };
 });

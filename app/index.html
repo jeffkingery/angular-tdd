@@ -3,11 +3,11 @@
 <head>
     <title>AngularJS Journal</title>
     <script type="text/javascript" src="../libraries/angular/angular.js"></script>
-    <script type="text/javascript" src="journalApp.js"></script>
+    <script type="text/javascript" src="app.js"></script>
     <script type="text/javascript" src="journalRepository.js"></script>
     <script type="text/javascript" src="journalController.js"></script>
 </head>
-<body ng-app="journalApp">
+<body ng-app="app">
 <h3>Journal</h3>
 <div ng-controller="JournalController">
     <div>
@@ -19,10 +19,23 @@
     <div>
         <h3>Past Entries ({{entries.length}})</h3>
         <ul>
-            <li ng-repeat="entry in entries">
+            <li ng-repeat="entry in entries track by $index">
+                <input type="checkbox" ng-model="entry.remove">
+                <span>{{entry.date}}</span>
                 <span>{{entry.text}}</span>
             </li>
         </ul>
+        <p>[ <a href="" data-ng-click="save()">Remove Checked Entries</a> ]</p>
+        {{entries}}
+        <p ng-repeat="entry in entries track by $index">
+            <input type="checkbox" ng-model="entry.remove">
+            <span>{{entry.date}}</span>
+            <span>{{entry.text}}</span>
+        </p>
+        <br/>
+        <form id="clear-entries-form" ng-submit="clear()">
+            <input type="submit" value="Clear"/>
+        </form>
         <hr/>
     </div>
 </div>

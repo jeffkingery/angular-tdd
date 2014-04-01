@@ -4,7 +4,7 @@
 module.exports = function (grunt) {
 
     grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
+        pkg: grunt.file.readJSON("package.json"),
 
         jshint: {
             options:{
@@ -35,36 +35,34 @@ module.exports = function (grunt) {
                     xdescribe: false
                 }
             },
-            all: ['Gruntfile.js', 'demo/**/*.js', 'tests/**/*.js']
+            all: ["Gruntfile.js", "karma.conf.js", "protractor.conf.js", "app/**/*.js", "tests/**/*.js"]
         },
 
         karma: {
             unit: {
-                configFile: 'karma.conf.js'
+                configFile: "karma.conf.js"
             }
         },
 
         protractor: {
             options: {
-                configFile: "protractor.conf.js", // Default config file
-                keepAlive: true, // If false, the grunt process stops when the test fails.
-                noColor: false, // If true, protractor will not use colors in its output.
-                args: {
-                    // Arguments passed to the command
-                }
+                configFile: "protractor.conf.js",
+                keepAlive: true,
+                noColor: false,
+                args: { } // Global arguments
             },
-            your_target: {
+            e2e: {
                 options: {
-                    configFile: "e2e.conf.js", // Target-specific config file
-                    args: {} // Target-specific arguments
+                    configFile: "protractor.conf.js", // Target-specific config file
+                    args: { } // Target-specific arguments
                 }
-            },
+            }
         },
 
         watch: {
             scripts: {
-                files: ['app/**/*.js', 'demo/**/*.js', 'test/**/*.js'],
-                tasks: ['jshint', 'karma:unit'],
+                files: ["Gruntfile.js", "karma.conf.js", "protractor.conf.js", "app/**/*.*", "tests/**/*.js"],
+                tasks: ["jshint", "karma:unit", "protractor:e2e"],
                 options: {
                     interrupt: true
                 }
@@ -72,9 +70,10 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks("grunt-contrib-jshint");
+    grunt.loadNpmTasks("grunt-karma");
+    grunt.loadNpmTasks('grunt-protractor-runner');
+    grunt.loadNpmTasks("grunt-contrib-watch");
 
-    grunt.registerTask('default', ['jshint', 'karma', 'watch']);
+    grunt.registerTask("default", ["jshint", "karma", "watch", "protractor"]);
 };
