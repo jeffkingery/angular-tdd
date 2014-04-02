@@ -1,6 +1,7 @@
 /* global app:true */
 
 app.controller("JournalController", function($scope, $location, JournalRepository){
+    "use strict";
 
     $scope.entries = JournalRepository.retrieveAll();
 

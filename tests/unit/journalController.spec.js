@@ -1,5 +1,5 @@
 (function(){
-"use strict";
+    "use strict";
 
     describe("Journal Controller", function () {
         var controller, scope, entries, entry1, entry2, entry3;

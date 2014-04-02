@@ -7,7 +7,7 @@
 
 A simple template to support [Test-Driven Development](http://c2.com/cgi/wiki?TestDrivenDevelopment) of AngularJS applications.  
 
-Linting, unit and (optionally) end-to-end (e2e) tests run automatically on every file save.  
+Linting, unit and end-to-end (e2e) tests run automatically on every file save.  
 
 ***
 
@@ -33,8 +33,8 @@ For me the answer looks like this project.
 
 ***
 
-######Initial Setup/Installation:  
- (Steps 1-4 once per machine, Steps 5-6 once per project instance)  
+###Initial Setup/Installation:  
+ (Steps 1-4 once per machine, Steps 5-7 once per project instance)  
 
 1. Install [Node.js](http://nodejs.org/download/).  
 
@@ -53,9 +53,11 @@ For me the answer looks like this project.
    It's okay - no puppies or kittens will be harmed.  
    npm keeps track of all this stuff, which you need to run your tests etc.  
 
-6. Install/update the Selenium WebDriver with: webdriver-manager update.  
+6. If they are not already present, you need to install [Java and the JDK](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html) to run Selenium Webdriver.  
 
-######Programming Session Workflow:  
+7. Install/update the Selenium WebDriver with: webdriver-manager update. 
+
+###Programming Session Workflow:  
 
 1. If you would like to run Protractor e2e tests on every file save in addition to JSHint "linting" and Karma unit tests:  
   open a command prompt, CD to the project root folder and enter: webdriver-manager start.  

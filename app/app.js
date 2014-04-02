@@ -1,5 +1,7 @@
 /// <reference path="../libraries/angular/angular.js"/>
 /// <reference path="../libraries/angular/angular-route.js"/>
+/*global app:true*/
+/*jshint unused: false */
 
 var app = angular.module("app", []);
 

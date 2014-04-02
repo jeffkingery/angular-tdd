@@ -1,7 +1,6 @@
-/*global app */
-
 // Service to persist and retrieve Journal Entries from localStorage
 app.factory("JournalRepository", function () {
+    "use strict";
 
     var STORAGE_ID = "journal-entries";
 

@@ -1,7 +1,7 @@
 {
     "name": "web-tests",
-    "description": "Components required to support scripted automated testing functionality and automated JSLinting.",
-    "version": "0.0.1",
+    "description": "Components required to support automated testing and JSHinting.",
+    "version": "0.0.2",
     "repository": {},
     "engines": {
         "node": ">= 0.10.25"
